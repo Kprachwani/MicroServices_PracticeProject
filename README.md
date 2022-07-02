@@ -86,9 +86,6 @@ It calls Product API to fetch product values, additionally associates products d
 ]
 ```
 
-Product API has unit tests project.
-Postman collection is also included.
-
 #Service 4. Product 
 It has parameters as below:
 ```yaml
@@ -99,3 +96,7 @@ It has parameters as below:
     "productValue": 500
 }
 ```
+
+
+Product API has unit tests project.
+Postman collection is also included.
