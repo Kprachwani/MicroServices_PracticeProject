@@ -1,0 +1,146 @@
+{
+	"info": {
+		"_postman_id": "adbe9433-6984-4eb2-b58b-4f8340537cb0",
+		"name": "MYProj_MS_TaxInvoice",
+		"description": "This collection has all the 3 apis for ExportInvoice, DetailLine, Product and master service Search.\r\nWhere Master service search will call 3 apis as below:\r\n\r\nSearch API:\r\nParameter : Invoice Number\r\nit will return Export Invoice data, detail line data and product data related Invoice Num.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "10397642"
+	},
+	"item": [
+		{
+			"name": "http://localhost:61107/api/products/3",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"\r",
+							"// This method will test response code shoud be 200 OK, response format should be JSON.\r",
+							"pm.test(\"Status test\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"    pm.response.to.be.ok;\r",
+							"    pm.response.to.be.json;\r",
+							"});\r",
+							"\r",
+							"//InBuilt - made changes\r",
+							"//This method will test response should be one of the 200/202 responce code.\r",
+							"pm.test(\"Successful POST request\", function () {\r",
+							"    pm.expect(pm.response.code).to.be.oneOf([200,202]);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"//InBuilt- made changes \r",
+							"//This will test Performance (time) should be below 100 ms.\r",
+							"pm.test(\"Response time is less than 100ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(100);\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:61107/api/products/3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "61107",
+					"path": [
+						"api",
+						"products",
+						"3"
+					]
+				},
+				"description": "Products API of Project : MS_Export.api.Product"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:61156/api/taxInvoices/2",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:61156/api/taxInvoices/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "61156",
+					"path": [
+						"api",
+						"taxInvoices",
+						"2"
+					]
+				},
+				"description": "Export Invoice API for project : MS_Export.api.ExportInvoice"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:61165/api/details/3",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:61165/api/details/3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "61165",
+					"path": [
+						"api",
+						"details",
+						"3"
+					]
+				},
+				"description": "Detail line api for project : MS_Export.api.Details\r\n\r\nWhich has two models."
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:61166/api/search",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"InvoiceNo\" :1\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:61166/api/search",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "61166",
+					"path": [
+						"api",
+						"search"
+					]
+				},
+				"description": "Master Search api for project : MS_Export.api.search.\r\n\r\nwhich calls other apis(microservices) under solution MS_Export"
+			},
+			"response": []
+		}
+	]
+}
